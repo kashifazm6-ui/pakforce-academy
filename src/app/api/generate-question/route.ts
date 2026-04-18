@@ -35,6 +35,14 @@ export async function POST(request: Request) {
       );
     }
 
+    const validTestTypes = ['verbal', 'nonverbal', 'academic'];
+    if (!validTestTypes.includes(testType)) {
+      return NextResponse.json(
+        { error: 'Invalid testType provided' },
+        { status: 400 }
+      );
+    }
+
     let userPrompt = '';
 
     if (testType === 'verbal') {
@@ -58,10 +66,19 @@ export async function POST(request: Request) {
     const model = genAI.getGenerativeModel({
       model: 'gemini-2.0-flash',
       systemInstruction: systemPrompt,
+      generationConfig: {
+        responseMimeType: 'application/json',
+      },
     });
 
     const result = await model.generateContent(userPrompt);
-    const rawText = result.response.text().trim();
+    const response = result.response;
+
+    if (!response.candidates || response.candidates.length === 0) {
+      throw new Error('No candidates in Gemini response. Content may have been blocked by safety filters.');
+    }
+
+    const rawText = response.text().trim();
 
     let parsed;
     try {
