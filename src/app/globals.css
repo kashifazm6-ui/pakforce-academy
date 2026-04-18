@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #0a0f1e;
+  --steel: #1a2035;
+  --gold: #c9a84c;
+  --gold-light: #e8c76a;
+  --gold-dark: #a8872e;
+  --white: #ffffff;
+  --text-muted: #8a9ab5;
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-steel: var(--steel);
+  --color-gold: var(--gold);
+  --color-white: var(--white);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--navy);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Diagonal line texture background */
+.diagonal-texture {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(201, 168, 76, 0.04) 40px,
+    rgba(201, 168, 76, 0.04) 41px
+  );
+}
+
+/* Gold gradient text */
+.gold-text {
+  color: var(--gold);
+}
+
+/* Gold divider */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  width: 100%;
+}
+
+/* Steel card */
+.steel-card {
+  background-color: var(--steel);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: 3px;
+}
+
+/* Smooth transitions */
+.section-transition {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gold ring progress (circular) */
+.circular-progress {
+  transform: rotate(-90deg);
+}
+
+/* Option card hover */
+.option-card {
+  transition: all 0.15s ease;
+}
+
+/* Military badge */
+.military-badge {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 2px 8px;
+  display: inline-block;
+}
