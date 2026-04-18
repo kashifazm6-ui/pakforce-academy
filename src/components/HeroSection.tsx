@@ -21,7 +21,7 @@ export default function HeroSection({ onBeginAssessment }: HeroSectionProps) {
       {/* Watermark crest */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
         <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Pakistan_Army_logo.svg/800px-Pakistan_Army_logo.svg.png"
+          src="/pakistan-army-logo.svg"
           alt=""
           width={520}
           height={520}
@@ -36,7 +36,7 @@ export default function HeroSection({ onBeginAssessment }: HeroSectionProps) {
         {/* Pakistan Army crest */}
         <div className="flex justify-center mb-8">
           <Image
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Pakistan_Army_logo.svg/800px-Pakistan_Army_logo.svg.png"
+            src="/pakistan-army-logo.svg"
             alt="Pakistan Army"
             width={96}
             height={96}

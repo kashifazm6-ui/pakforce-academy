@@ -41,7 +41,7 @@ export default function Navbar({ onNavigate, currentSection }: NavbarProps) {
             className="flex items-center gap-3 focus:outline-none"
           >
             <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Pakistan_Army_logo.svg/800px-Pakistan_Army_logo.svg.png"
+              src="/pakistan-army-logo.svg"
               alt="Pakistan Army"
               width={38}
               height={38}
