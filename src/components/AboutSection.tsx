@@ -28,7 +28,7 @@ export default function AboutSection() {
             Verbal Intelligence, Non-Verbal Intelligence, and Academic assessments aligned with
             the official AMC testing format — covering 84 verbal MCQs, 64 non-verbal MCQs, and
             50 academic MCQs across Biology, Chemistry, and Physics at FSc and MDCAT level.
-            Every question is generated fresh via the Anthropic Claude AI model, ensuring
+            Every question is generated fresh via the Google Gemini AI model, ensuring
             no repetition within a session and consistent alignment with the standard of
             an official military examination. The platform is built for discipline, accuracy,
             and serious preparation — no shortcuts, only results.

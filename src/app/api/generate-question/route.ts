@@ -1,9 +1,5 @@
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
-
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
 
 const systemPrompt = `You are a strict MCQ question generator for a Pakistan Army AMC (Army Medical Corps) Initial Test preparation platform. Generate exactly one question in valid JSON format with no additional text, no markdown, no code blocks — only raw JSON.
 
@@ -21,6 +17,15 @@ Rules:
 
 export async function POST(request: Request) {
   try {
+    if (!process.env.GEMINI_API_KEY) {
+      return NextResponse.json(
+        { error: 'GEMINI_API_KEY is not configured' },
+        { status: 500 }
+      );
+    }
+
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
     const { testType, topic, previousQuestions } = await request.json();
 
     if (!testType || !topic) {
@@ -50,19 +55,13 @@ export async function POST(request: Request) {
       userPrompt += ` Do NOT repeat any of these previously asked questions: ${previousQuestions.slice(-10).join(' | ')}`;
     }
 
-    const message = await client.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 512,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userPrompt }],
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.0-flash',
+      systemInstruction: systemPrompt,
     });
 
-    const content = message.content[0];
-    if (content.type !== 'text') {
-      throw new Error('Unexpected response type from Claude');
-    }
-
-    const rawText = content.text.trim();
+    const result = await model.generateContent(userPrompt);
+    const rawText = result.response.text().trim();
 
     let parsed;
     try {
@@ -70,7 +69,7 @@ export async function POST(request: Request) {
     } catch {
       const jsonMatch = rawText.match(/\{[\s\S]*\}/);
       if (!jsonMatch) {
-        throw new Error('Could not parse JSON from Claude response');
+        throw new Error('Could not parse JSON from Gemini response');
       }
       parsed = JSON.parse(jsonMatch[0]);
     }
@@ -82,7 +81,7 @@ export async function POST(request: Request) {
       typeof parsed.correct !== 'number' ||
       typeof parsed.explanation !== 'string'
     ) {
-      throw new Error('Invalid question format from Claude');
+      throw new Error('Invalid question format from Gemini');
     }
 
     return NextResponse.json(parsed);
