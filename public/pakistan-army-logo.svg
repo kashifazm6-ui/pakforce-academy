@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Outer circle border -->
+  <circle cx="100" cy="100" r="98" fill="none" stroke="#c9a84c" stroke-width="2"/>
+  <!-- Dark background circle -->
+  <circle cx="100" cy="100" r="96" fill="#0a0f1e"/>
+  <!-- Green inner circle -->
+  <circle cx="100" cy="100" r="82" fill="#115740"/>
+  <!-- Crescent moon (white) -->
+  <path d="M100 38 A52 52 0 1 1 62 162 A38 38 0 1 0 100 38 Z" fill="white" transform="rotate(-20 100 100)"/>
+  <!-- Five-pointed star (white) -->
+  <polygon points="100,52 107,74 130,74 112,88 119,110 100,97 81,110 88,88 70,74 93,74" fill="white" transform="translate(14,-6) scale(0.7) rotate(15 100 100)"/>
+  <!-- Outer decorative ring -->
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#c9a84c" stroke-width="0.5" stroke-dasharray="4 3"/>
+</svg>

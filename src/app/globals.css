@@ -23,6 +23,19 @@
   padding: 0;
 }
 
+button, a, [role="button"], [role="link"], select, summary {
+  cursor: pointer;
+}
+
+label[for] {
+  cursor: pointer;
+}
+
+label[for]:has(~ :disabled),
+label[for]:has(+ :disabled) {
+  cursor: default;
+}
+
 html {
   scroll-behavior: smooth;
 }
