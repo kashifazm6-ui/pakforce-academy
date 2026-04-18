@@ -31,7 +31,7 @@ export default function AboutSection() {
             Every question is generated fresh via the Anthropic Claude AI model, ensuring
             no repetition within a session and consistent alignment with the standard of
             an official military examination. The platform is built for discipline, accuracy,
-            and serious preparation — no shortcuts, no shortcuts, only results.
+            and serious preparation — no shortcuts, only results.
           </p>
         </div>
 

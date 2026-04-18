@@ -37,22 +37,24 @@ const TEST_META: Record<
     title: 'Academic Assessment',
     totalQuestions: 50,
     durationMinutes: 40,
-    topics: ['Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology',
-      'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology', 'Biology',
-      'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry',
-      'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry', 'Chemistry',
-      'Physics', 'Physics', 'Physics', 'Physics', 'Physics', 'Physics', 'Physics', 'Physics', 'Physics', 'Physics',
-      'Physics', 'Physics', 'Physics', 'Physics', 'Physics',
-    ],
+    topics: [],
     badge: 'Academic Assessment',
   },
 };
 
+const ACADEMIC_TOPIC_DISTRIBUTION: { topic: string; count: number }[] = [
+  { topic: 'Biology', count: 20 },
+  { topic: 'Chemistry', count: 15 },
+  { topic: 'Physics', count: 15 },
+];
+
 function buildTopicSequence(testType: TestType): string[] {
-  const meta = TEST_META[testType];
   if (testType === 'academic') {
-    return meta.topics;
+    return ACADEMIC_TOPIC_DISTRIBUTION.flatMap(({ topic, count }) =>
+      Array(count).fill(topic)
+    );
   }
+  const meta = TEST_META[testType];
   const { topics, totalQuestions } = meta;
   const seq: string[] = [];
   for (let i = 0; i < totalQuestions; i++) {
